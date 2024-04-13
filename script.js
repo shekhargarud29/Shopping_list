@@ -130,12 +130,14 @@ function displayitem(arr) {
 
 function removeItem() {
   event.stopPropagation();
-  let index = event.target.parentElement.getAttribute("data-index"); // Get the index from data-index attribute
-  // console.log(index);
-  arr.splice(index, 1); // Remove the item from arr
-  localStorage.setItem("items", JSON.stringify(arr)); // Update local storage
-  listVal.innerHTML = ""; // Clear the list
-  displayitem(arr); // Re-display the updated list
+  if (confirm("Do you want to delete this item?") == true) {
+    let index = event.target.parentElement.getAttribute("data-index"); // Get the index from data-index attribute
+    // console.log(index);
+    arr.splice(index, 1); // Remove the item from arr
+    localStorage.setItem("items", JSON.stringify(arr)); // Update local storage
+    listVal.innerHTML = ""; // Clear the list
+    displayitem(arr); // Re-display the updated list
+  }
 }
 
 function updateval() {
